@@ -1,0 +1,47 @@
+.load{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(7, 57, 79);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.loginContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(7, 57, 79);
+  flex-flow: wrap column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: lightblue;
+  width: 200px;
+  height: 100px;
+  font-size: 50px;
+  border-radius: 12px;
+  animation: loginButton 1s infinite ease-in-out;
+}
+
+@keyframes loginButton {
+  0% {
+    transform: scale(1.0)
+    
+  }
+  50%{
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}

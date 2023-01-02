@@ -1,0 +1,39 @@
+.mainComponentButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px 20px;
+  }
+  .TDLComponentButton,
+  .BlogComponentButton,
+  .DiaryComponentButton {
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100px;
+  
+  }
+  .logoutBox{
+    width: calc(100% - 20);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px;
+  }
+  .logoutButton{
+    border: none;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: 0.2s;
+  }
+  .logoutButton:hover{
+    transform: scale(1.2);
+  }
+  .mainButton{
+    width: 60px;
+    height: 60px;
+    
+  }
