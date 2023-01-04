@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { getData, setData } from "../services/doc.services";
- 
+
 import {
   googleSignUpWithPopup,
   googleSignUpWithRedirect,
   handleGoogleRedirectResult,
+  loginWithSocial,
 } from "../services/login.services";
-import { isMobile } from "react-device-detect";
+import { isAndroid, isIOS, isMobile } from "react-device-detect";
+
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -17,11 +18,15 @@ export const Login = () => {
   const handleGoogle = async () => {
     setLoading(true);
     try {
-      if (isMobile) {
-        await googleSignUpWithRedirect();
-      } else {
+       if(isIOS){
         await googleSignUpWithPopup();
+        //await googleSignUpWithRedirect();
+      } else {
+        //await loginWithSocial();
+        await googleSignUpWithRedirect();
+        //await googleSignUpWithPopup();
       }
+      // await googleSignUpWithPopup();
       setLoading(false);
       navigate("/main");
     } catch (err) {

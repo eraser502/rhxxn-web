@@ -6,27 +6,29 @@ import { ButtonGroup } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Modal } from "./Modal";
 import { signOut } from "../services/login.services";
-import { getTodo } from "../services/doc.services";
+import { getTodo, getNote } from "../services/doc.services";
 import { db } from "../firebase";
-import { ReactComponent as RH } from "../CustomIcon/RH.svg"
+import { ReactComponent as RH } from "../CustomIcon/RH.svg";
 
 export const Header = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tdlDB, setTdlDB] = useState();
-    let cnt = 0;
+  const [noteDB, setNoteDB] = useState();
+  //let cnt = 0;
   const getInitData = async () => {
-    setTdlDB(await getTodo())
+    setTdlDB(await getTodo());
+    // setNoteDB(await getNote());
   };
-  
+
   useEffect(() => {
-    getInitData()
+    getInitData();
   }, []);
 
   return (
-    <div>
-      <div className="logoutBox">
-      <RH
+    <div className="headerBox">
+      <div className="topNavBox">
+        <RH
           className="mainButton"
           onClick={() => {
             navigate("/main");
@@ -57,14 +59,24 @@ export const Header = () => {
         <ButtonGroup>
           <Button
             className="TDLComponentButton"
-            onClick={() => {navigate("/todo", { state: { db: tdlDB } })}}
+            onClick={() => {
+              navigate("/todo", { state: { db: tdlDB } });
+            }}
           >
             TodoList
           </Button>
-          <Button className="DiaryComponentButton">Diary</Button>
+          <Button
+            className="noteComponentButton"
+            onClick={() => {
+              navigate("/note");
+            }}
+          >
+            Note
+          </Button>
           <Button className="BlogComponentButton">Blog</Button>
         </ButtonGroup>
       </div>
     </div>
   );
 };
+// , { state: { db: noteDB } }

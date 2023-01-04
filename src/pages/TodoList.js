@@ -6,7 +6,7 @@ import { TDLCalendar } from "../components/TDLCalendar";
 import { BiCheckbox, BiCheckboxChecked } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
-import { FiLoader } from "react-icons/fi"
+import { FiLoader } from "react-icons/fi";
 import { Header } from "../components/Header";
 import { useLocation } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export const TodoList = () => {
   const [todos, setTodos] = useState("");
   const [modifytodos, setModifytodos] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  console.log("sex")
+
   const addTodos = (value) => {
     let nextId;
     if (pointdayDB.length === 0) {
@@ -157,107 +157,111 @@ export const TodoList = () => {
   return (
     <div>
       <Header />
-      {isLoading ? (
-        <FiLoader className="todoLoader" />
-      ) : (
-        <div>
-          <div className="TDLTitle">
-            <span>Todo</span>
-            <span>{pointday.toLocaleDateString().slice(0, -1)}</span>
-          </div>
-          <div className="TDLCalendarBox">
-            <TDLCalendar
-              pointday={pointday}
-              getPointDay={(day) => {
-                setPointday(day);
-              }}
-              calendarDb={todoDB}
-            ></TDLCalendar>
-          </div>
-          <div className="TDLMainContainer">
-            <div className="TDLContent">
-              {pointdayDB.length !== 0
-                ? pointdayDB.map((value) => (
-                    <div key={value.id}>
-                      {value.modify ? (
-                        <div className="TDLTextBox">
-                          <input
-                            className="TDLInputText"
-                            value={modifytodos}
-                            placeholder="Modify todos..."
-                            onChange={(e) => setModifytodos(e.target.value)}
-                          ></input>
-                          <button
-                            className="TDLModifyEndButton"
-                            onClick={() => modifyEndMode(value.id, modifytodos)}
-                          >
-                            Modify
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="TDLTextBox">
-                          {value.checked ? (
-                            <BiCheckboxChecked
-                              size="17px"
-                              onClick={() => handleCheck(value.id)}
-                            />
-                          ) : (
-                            <BiCheckbox
-                              size="17px"
-                              onClick={() => handleCheck(value.id)}
-                            />
-                          )}
-
-                          <div
-                            className={
-                              value.checked ? "TDLText checked" : "TDLText"
-                            }
-                          >
-                            {value.content}
+      <div className="TDLTotalBox">
+        {isLoading ? (
+          <FiLoader className="todoLoader" />
+        ) : (
+          <div className="TDLMainBox">
+            <div className="TDLTitle">
+              <span>Todo</span>
+              <span>{pointday.toLocaleDateString().slice(0, -1)}</span>
+            </div>
+            <div className="TDLCalendarBox">
+              <TDLCalendar
+                pointday={pointday}
+                getPointDay={(day) => {
+                  setPointday(day);
+                }}
+                calendarDb={todoDB}
+              ></TDLCalendar>
+            </div>
+            <div className="TDLMainContainer">
+              <div className="TDLContent">
+                {pointdayDB.length !== 0
+                  ? pointdayDB.map((value) => (
+                      <div key={value.id}>
+                        {value.modify ? (
+                          <div className="TDLTextBox">
+                            <input
+                              className="TDLInputText"
+                              value={modifytodos}
+                              placeholder="Modify todos..."
+                              onChange={(e) => setModifytodos(e.target.value)}
+                            ></input>
+                            <button
+                              className="TDLModifyEndButton"
+                              onClick={() =>
+                                modifyEndMode(value.id, modifytodos)
+                              }
+                            >
+                              Modify
+                            </button>
                           </div>
+                        ) : (
+                          <div className="TDLTextBox">
+                            {value.checked ? (
+                              <BiCheckboxChecked
+                                size="17px"
+                                onClick={() => handleCheck(value.id)}
+                              />
+                            ) : (
+                              <BiCheckbox
+                                size="17px"
+                                onClick={() => handleCheck(value.id)}
+                              />
+                            )}
 
-                          <AiOutlineEdit
-                            className="TDLModifyButton"
-                            onClick={() => {
-                              modifyMode(value.id);
-                              setModifytodos(value.content);
-                            }}
-                          ></AiOutlineEdit>
+                            <div
+                              className={
+                                value.checked ? "TDLText checked" : "TDLText"
+                              }
+                            >
+                              {value.content}
+                            </div>
 
-                          <div className="TDLDeleteButtonBox">
-                            <RiDeleteBin6Line
-                              className="TDLDeleteButton"
-                              onClick={() => deleteTodos(value.id)}
-                            ></RiDeleteBin6Line>
+                            <AiOutlineEdit
+                              className="TDLModifyButton"
+                              onClick={() => {
+                                modifyMode(value.id);
+                                setModifytodos(value.content);
+                              }}
+                            ></AiOutlineEdit>
+
+                            <div className="TDLDeleteButtonBox">
+                              <RiDeleteBin6Line
+                                className="TDLDeleteButton"
+                                onClick={() => deleteTodos(value.id)}
+                              ></RiDeleteBin6Line>
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  ))
-                : null}
+                        )}
+                      </div>
+                    ))
+                  : null}
 
-              <div className="TDLInputBox">
-                <input
-                  className="TDLInputText"
-                  placeholder="Add todos..."
-                  onChange={(e) => setTodos(e.target.value)}
-                  value={todos}
-                />
-                <button
-                  className="TDLAddButton"
-                  onClick={() => {
-                    if (todos !== "") {
-                      addTodos(todos);
-                    }
-                  }}
-                >
-                  Add
-                </button>
+                <div className="TDLInputBox">
+                  <input
+                    className="TDLInputText"
+                    placeholder="Add todos..."
+                    onChange={(e) => setTodos(e.target.value)}
+                    value={todos}
+                  />
+                  <button
+                    className="TDLAddButton"
+                    onClick={() => {
+                      if (todos !== "") {
+                        addTodos(todos);
+                      }
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

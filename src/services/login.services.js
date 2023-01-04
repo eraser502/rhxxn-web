@@ -1,10 +1,11 @@
 import { getRedirectResult, GoogleAuthProvider, sendSignInLinkToEmail, signInWithPopup, signInWithRedirect, UserCredential } from "firebase/auth";
 import { getDoc, doc, setDoc, connectFirestoreEmulator, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import { setTodo } from "./doc.services";
+import { setNote, setTodo } from "./doc.services";
 
 export const signOut = async () => {
     await auth.signOut();
+    return;
 }
 
 
@@ -15,10 +16,24 @@ export const googleSignUpWithPopup = async () => {
     await makeUser(result);
     return
 }
-
+// export async function loginWithSocial(provider) {
+//       try {
+//         const provider = new GoogleAuthProvider();
+//         await new signInWithRedirect(auth, provider);
+//         const result = await getRedirectResult(auth);
+//         if (result) {
+//           // const user = result.user;
+//         }
+//         return;
+//       } catch (error) {
+//         return error;
+//       }
+// }
 export const googleSignUpWithRedirect = async () => {
     const provider = new GoogleAuthProvider();
     await signInWithRedirect(auth, provider);
+    //const result = await getRedirectResult(auth)
+    //await makeUser(result);
 }
 
 export const handleGoogleRedirectResult = async () => {
@@ -51,7 +66,7 @@ const makeUser = async (result) => {
     // setTDL("month");
     // setTDL("year");
     setTodo();
-    // setNote();
+    setNote();
     return
 }
 

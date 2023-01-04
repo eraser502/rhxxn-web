@@ -15,7 +15,7 @@ export const Main = () => {
       <Header />
       {/* <div className="mainContents">
         {mode === "todo" ? <TodoList /> : null}
-      </div> */}
+  </div> */}
     </div>
   );
 };

@@ -6,12 +6,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"; //라
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { TodoList } from './pages/TodoList';
+import { Note } from './pages/Note';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => { // user 판명을 듣고 
+      console.log(user)
       if(user) { // 있으면
         console.log('O')
         setIsLogin(true); // 로그인 됨
@@ -30,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/main" element={<Main />} />
             <Route path="/todo" element={<TodoList />} />
+            <Route path="/note" element={<Note />} />
             <Route path="/*" element={<Navigate to="main" />} />
             <Route path="/" element={<Navigate to="main" />} />
           </Routes>

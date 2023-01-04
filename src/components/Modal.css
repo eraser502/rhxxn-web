@@ -1,5 +1,5 @@
 .modalContainer {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 100;
@@ -19,9 +19,9 @@
   gap: 8px;
   width: 200px;
   height: 100px;
-  background-color: #1976d2;
+  background-color: #909090;
   color: white;
-  font-weight: 400;
+  font-weight: 600;
   outline: 2px solid azure;
   border-radius: 12px;
 }
@@ -43,7 +43,7 @@
   height: 24px;
   border-radius: 8px;
   border: none;
-  background-color: #7db5ed;
+  background-color: #51565a;
   color: white;
   font-weight: 600;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);

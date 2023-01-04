@@ -25,11 +25,11 @@ export const TDLCalendar = (props) => {
       onChange={setValue}
       value={value}
       formatDay={(locale, date) => moment(date).format("DD")}
-      tileClassName={({ date, view }) =>
-        marks.find((x) => x === moment(date).format("DD-MM-YYYY"))
-          ? "highlight"
-          : ""
-      }
+      tileClassName={({ date, view }) =>{
+        if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
+          return "highlight";
+        }
+      }}
       //tileDisabled={({ date }) => !diaryDBDateArray.includes(date.toLocaleDateString())}
     />
   );

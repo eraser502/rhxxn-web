@@ -1,5 +1,10 @@
+.headerBox{
+  border-bottom: 1px solid #908B8B;
+  margin-bottom: 20px;
+}
 .mainComponentButtons {
     display: flex;
+    width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -7,7 +12,7 @@
   }
   .TDLComponentButton,
   .BlogComponentButton,
-  .DiaryComponentButton {
+  .noteComponentButton {
     height: 30px;
     justify-content: center;
     align-items: center;
@@ -15,8 +20,8 @@
     width: 100px;
   
   }
-  .logoutBox{
-    width: calc(100% - 20);
+  .topNavBox{
+    width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,5 +40,4 @@
   .mainButton{
     width: 60px;
     height: 60px;
-    
   }
